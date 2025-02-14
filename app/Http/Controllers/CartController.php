@@ -78,11 +78,10 @@ public function checkout()
 }
 public function place_an_order(Request $request)
 {
-    $user_id = Auth::user()->id;
+    $user_id = Auth::id();
 
-    $address = Address::where('user_id',$user_id)->where('isdefault',true)->first();
-    if(!$address)
-    {
+    $address = Address::where('user_id', $user_id)->where('isdefault', true)->first();
+    if (!$address) {
         $request->validate([
             'name' => 'required|max:100',
             'phone' => 'required|numeric|digits:10',
@@ -94,86 +93,90 @@ public function place_an_order(Request $request)
             'landmark' => 'required'
         ]);
 
-        $address = new Address();
-        $address->user_id = $user_id;
-        $address->name = $request->name;
-        $address->phone = $request->phone;
-        $address->zip = $request->zip;
-        $address->state = $request->state;
-        $address->city = $request->city;
-        $address->address = $request->address;
-        $address->locality = $request->locality;
-        $address->landmark = $request->landmark;
-        $address->country = '';
-        $address->isdefault = true;
-        $address->save();
+        $address = Address::create([
+            'user_id' => $user_id,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'zip' => $request->zip,
+            'state' => $request->state,
+            'city' => $request->city,
+            'address' => $request->address,
+            'locality' => $request->locality,
+            'landmark' => $request->landmark,
+            'country' => '',
+            'isdefault' => true
+        ]);
     }
 
     $this->setAmountForCheckout();
-
-    $order = new Order();
-    $order->user_id = $user_id;
-    $order->subtotal = floatval(str_replace(',', '', session()->get('checkout')['subtotal']));
-    $order->discount = floatval(str_replace(',', '', session()->get('checkout')['discount']));
-    $order->tax = floatval(str_replace(',', '', session()->get('checkout')['tax']));
-    $order->total = floatval(str_replace(',', '', session()->get('checkout')['total']));
-    $order->name = $address->name;
-    $order->phone = $address->phone;
-    $order->locality = $address->locality;
-    $order->address = $address->address;
-    $order->city = $address->city;
-    $order->state = $address->state;
-    $order->country = $address->country;
-    $order->landmark = $address->landmark;
-    $order->zip = $address->zip;
-    $order->save();
-
-    foreach(Cart::instance('cart')->content() as $item)
-    {
-        $orderitem = new OrderItem();
-        $orderitem->product_id = $item->id;
-        $orderitem->order_id = $order->id;
-        $orderitem->price = $item->price;
-        $orderitem->quantity = $item->qty;
-        $orderitem->save();
+    
+    $checkout = session()->get('checkout', []);
+    if (empty($checkout)) {
+        return redirect()->route('cart.index')->with('error', 'Checkout session expired. Please try again.');
     }
 
-    $transaction = new Transaction();
-    $transaction->user_id = $user_id;
-    $transaction->order_id = $order->id;
-    $transaction->mode = $request->mode;
-    $transaction->status = "pending";
-    $transaction->save();
+    $order = Order::create([
+        'user_id' => $user_id,
+        'subtotal' => floatval(str_replace(',', '', $checkout['subtotal'] ?? 0)),
+        'discount' => floatval(str_replace(',', '', $checkout['discount'] ?? 0)),
+        'tax' => floatval(str_replace(',', '', $checkout['tax'] ?? 0)),
+        'total' => floatval(str_replace(',', '', $checkout['total'] ?? 0)),
+        'name' => $address->name,
+        'phone' => $address->phone,
+        'locality' => $address->locality,
+        'address' => $address->address,
+        'city' => $address->city,
+        'state' => $address->state,
+        'country' => $address->country,
+        'landmark' => $address->landmark,
+        'zip' => $address->zip
+    ]);
+
+    foreach (Cart::instance('cart')->content() as $item) {
+        if (empty($item->id)) {
+         \Illuminate\Support\Facades\Log::error("Missing product_id for cart item: " . json_encode($item));
+         continue;
+        }
+    
+        OrderItem::create([
+            'product_id' => $item->id,
+            'order_id'   => $order->id,
+            'price'      => $item->price,
+            'quantity'   => $item->qty
+        ]);
+    }
+    
+    Transaction::create([
+        'user_id' => $user_id,
+        'order_id' => $order->id,
+        'mode' => $request->mode,
+        'status' => "pending"
+    ]);
 
     Cart::instance('cart')->destroy();
-    session()->forget('checkout');
-    session()->forget('coupon');
-    session()->forget('discounts');
-    Session::put('order->id',$order->id);
+    session()->forget(['checkout', 'coupon', 'discounts']);
+    session()->put('order_id', $order->id);
+    
     return redirect()->route('cart.order_confirmation');
 }
 
 
 public function setAmountForCheckout()
 {
-    if(!Cart::instance('cart')->count() > 0)
-    {
+    if (Cart::instance('cart')->count() <= 0) {
         session()->forget('checkout');
         return;
     }
 
-    if(session()->has('coupon'))
-    {
-        session()->put('checkout',[
-            'discount' => session()->get('discounts')['discount'],
-            'subtotal' =>  session()->get('discounts')['subtotal'],
-            'tax' =>  session()->get('discounts')['tax'],
-            'total' =>  session()->get('discounts')['total']
+    if (session()->has('discounts') && is_array(session()->get('discounts'))) {
+        session()->put('checkout', [
+            'discount' => session()->get('discounts')['discount'] ?? 0,
+            'subtotal' => session()->get('discounts')['subtotal'] ?? Cart::instance('cart')->subtotal(),
+            'tax' => session()->get('discounts')['tax'] ?? Cart::instance('cart')->tax(),
+            'total' => session()->get('discounts')['total'] ?? Cart::instance('cart')->total()
         ]);
-    }
-    else
-    {
-        session()->put('checkout',[
+    } else {
+        session()->put('checkout', [
             'discount' => 0,
             'subtotal' => Cart::instance('cart')->subtotal(),
             'tax' => Cart::instance('cart')->tax(),

@@ -21,8 +21,8 @@ class AdminController extends Controller
     }
 
 
-   
-    
+
+
 
     //Brands
     public function brands()
@@ -35,13 +35,13 @@ class AdminController extends Controller
          return view("admin.brand-add");
     }
     public function add_brand_store(Request $request)
-    {        
+    {
         $request->validate([
             'name' => 'required',
             'slug' => 'required|unique:brands,slug',
             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
         ]);
-    
+
         $brand = new Brand();
         $brand->name = $request->name;
         $brand->slug = Str::slug($request->name);
@@ -58,6 +58,9 @@ class AdminController extends Controller
     public function brand_edit($id)
  {
      $brand = Brand::find($id);
+     if (!$brand) {
+        return back()->with('error', 'Brand not found.');
+    }
      return view('admin.brand-edit',compact('brand'));
  }
  public function update_brand(Request $request)
@@ -71,7 +74,7 @@ class AdminController extends Controller
      $brand->name = $request->name;
      $brand->slug = $request->slug;
      if($request->hasFile('image'))
-     {            
+     {
          if (File::exists(public_path('uploads/brands').'/'.$brand->image)) {
              File::delete(public_path('uploads/brands').'/'.$brand->image);
          }
@@ -80,8 +83,8 @@ class AdminController extends Controller
          $file_name = Carbon::now()->timestamp . '.' . $file_extention;
          $this->GenerateBrandThumbailsImage($image,$file_name);
          $brand->image = $file_name;
-     }        
-     $brand->save();        
+     }
+     $brand->save();
      return redirect()->route('admin.brands')->with('status','Record has been updated successfully !');
  }
 
@@ -96,7 +99,7 @@ class AdminController extends Controller
 
 
 
-    
+
 public function delete_brand($id)
 {
     $brand = Brand::find($id);
@@ -106,13 +109,6 @@ public function delete_brand($id)
     $brand->delete();
     return redirect()->route('admin.brands')->with('status','Record has been deleted successfully !');
 }
-
-
-
-
-
-
-
 
 
 
@@ -128,9 +124,9 @@ public function delete_brand($id)
                     return view("admin.category-add");
                 }
 
-                
+
                 public function add_category_store(Request $request)
-                {        
+                {
                     $request->validate([
                         'name' => 'required',
                         'slug' => 'required|unique:categories,slug',
@@ -169,22 +165,22 @@ public function delete_brand($id)
                         'slug' => 'required|unique:categories,slug,'.$request->id,
                         'image' => 'mimes:png,jpg,jpeg|max:2048'
                     ]);
-                
+
                     $category = Category::find($request->id);
                     $category->name = $request->name;
                     $category->slug = $request->slug;
                     if($request->hasFile('image'))
-                    {            
+                    {
                         if (File::exists(public_path('uploads/categories').'/'.$category->image)) {
                             File::delete(public_path('uploads/categories').'/'.$category->image);
                         }
                         $image = $request->file('image');
                         $file_extention = $request->file('file')->extension();
                         $file_name = Carbon::now()->timestamp . '.' . $file_extention;
-                        $this->GenerateCategoryThumbailsImage($image,$file_name);   
+                        $this->GenerateCategoryThumbailsImage($image,$file_name);
                         $category->image = $file_name;
-                    }        
-                    $category->save();    
+                    }
+                    $category->save();
                     return redirect()->route('admin.categories')->with('status','Record has been updated successfully !');
                 }
                 public function delete_category($id)
@@ -258,18 +254,18 @@ public function delete_brand($id)
                 }
                 if (File::exists(public_path('uploads/products/thumbnails').'/'.$product->image)) {
                     File::delete(public_path('uploads/products/thumbnails').'/'.$product->image);
-                }            
-            
+                }
+
                 $image = $request->file('image');
                 $imageName = $current_timestamp.'.'.$image->extension();
-                $this->GenerateProductThumbnailImage($image,$imageName);            
+                $this->GenerateProductThumbnailImage($image,$imageName);
                 $product->image = $imageName;
             }
-        
+
             $gallery_arr = array();
             $gallery_images = "";
             $counter = 1;
-        
+
             if($request->hasFile('images'))
             {
                 $oldGImages = explode(",",$product->images);
@@ -278,7 +274,7 @@ public function delete_brand($id)
                     if (File::exists(public_path('uploads/products').'/'.trim($gimage))) {
                         File::delete(public_path('uploads/products').'/'.trim($gimage));
                     }
-        
+
                     if (File::exists(public_path('uploads/products/thumbails').'/'.trim($gimage))) {
                         File::delete(public_path('uploads/products/thumbails').'/'.trim($gimage));
                     }
@@ -336,7 +332,7 @@ public function update_product(Request $request)
         'name'=>'required',
         'slug'=>'required|unique:products,slug,'.$request->id,
         'category_id'=>'required',
-        'brand_id'=>'required',            
+        'brand_id'=>'required',
         'short_description'=>'required',
         'description'=>'required',
         'regular_price'=>'required',
@@ -345,9 +341,9 @@ public function update_product(Request $request)
         'stock_status'=>'required',
         'featured'=>'required',
         'quantity'=>'required',
-        'image'=>'required|mimes:png,jpg,jpeg|max:2048'            
+        'image'=>'required|mimes:png,jpg,jpeg|max:2048'
     ]);
-    
+
     $product = Product::find($request->id);
     $product->name = $request->name;
     $product->slug = Str::slug($request->name);
@@ -360,11 +356,11 @@ public function update_product(Request $request)
     $product->featured = $request->featured;
     $product->quantity = $request->quantity;
     $current_timestamp = Carbon::now()->timestamp;
-    
+
     if($request->hasFile('image'))
-    {        
+    {
         $product->image = $request->image;
-        $file_extention = $request->file('image')->extension();            
+        $file_extention = $request->file('image')->extension();
         $file_name = $current_timestamp . '.' . $file_extention;
         $path = $request->image->storeAs('products', $file_name, 'public_uploads');
         $product->image = $path;
@@ -378,12 +374,12 @@ public function update_product(Request $request)
     {
         $allowedfileExtension=['jpg','png','jpeg'];
         $files = $request->file('images');
-        foreach($files as $file){                
-            $gextension = $file->getClientOriginalExtension();                                
-            $check=in_array($gextension,$allowedfileExtension);            
+        foreach($files as $file){
+            $gextension = $file->getClientOriginalExtension();
+            $check=in_array($gextension,$allowedfileExtension);
             if($check)
             {
-                $gfilename = $current_timestamp . "-" . $counter . "." . $gextension;                    
+                $gfilename = $current_timestamp . "-" . $counter . "." . $gextension;
                 $gpath = $file->storeAs('products', $gfilename, 'public_uploads');
                 array_push($gallery_arr,$gpath);
                 $counter = $counter + 1;
@@ -393,22 +389,17 @@ public function update_product(Request $request)
     }
     $product->images = $gallery_images;
 
-    $product->save();       
+    $product->save();
     return redirect()->route('admin.products')->with('status','Record has been updated successfully !');
 }
 
 
 public function delete_product($id)
 {
-    $product = Product::find($id);        
+    $product = Product::find($id);
     $product->delete();
     return redirect()->route('admin.products')->with('status','Record has been deleted successfully !');
-} 
-
-
-
-
-
+}
 
 
 }

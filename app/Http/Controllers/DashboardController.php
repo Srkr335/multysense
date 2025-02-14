@@ -14,8 +14,7 @@ class DashboardController extends Controller
         $completedOrders = Order::where('status', 'completed')->count();
         $pendingOrders = Order::where('status', 'pending')->count();
         $canceledOrders = Order::where('status', 'canceled')->count();
-        
         return view('dashboard', compact('totalOrders', 'completedOrders', 'pendingOrders', 'canceledOrders'));
-        
+
     }
 }

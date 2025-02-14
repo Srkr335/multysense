@@ -1,124 +1,124 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang                                                             = "{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset                                                      = "utf-8">
+    <meta name                                                         = "viewport" content                        = "width                     = device-width, initial-scale = 1">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name                                                         = "csrf-token" content                      = "{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Multysense dashboard') }}</title>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="author" content="" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('font/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('icon/style.css') }}">
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('images/favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+        <meta http-equiv                                               = "content-type" content                    = "text/html; charset        = utf-8" />
+        <meta name                                                     = "author" content                          = "" />
+        <link rel                                                      = "stylesheet" type                         = "text/css" href            = "{{ asset('css/animate.min.css') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/animation.css') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/bootstrap.css') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/bootstrap-select.min.css') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/style.css') }}">
+    <link rel                                                          = "stylesheet" href                         = "{{ asset('font/fonts.css') }}">
+    <link rel                                                          = "stylesheet" href                         = "{{ asset('icon/style.css') }}">
+    <link rel                                                          = "shortcut icon" href                      = "{{ asset('images/favicon.ico') }}">
+    <link rel                                                          = "apple-touch-icon-precomposed" href       = "{{ asset('images/favicon.ico') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/sweetalert.min.css') }}">
+    <link rel                                                          = "stylesheet" type                         = "text/css" href            = "{{ asset('css/custom.css') }}">
         
     @stack('styles')
 </head>
 
 
-<body class="body">
-    <div id="wrapper">
-        <div id="page" class="">
-            <div class="layout-wrap">
+<body class                                                            = "body">
+    <div id                                                            = "wrapper">
+        <div id                                                        = "page" class                              = "">
+            <div class                                                 = "layout-wrap">
 
            
 
-                <div class="section-menu-left">
-                    <div class="box-logo">
-                        <a href="{{route('admin.index')}}" id="">
+                <div class                                             = "section-menu-left">
+                    <div class                                         = "box-logo">
+                        <a href                                        = "{{route('admin.index')}}" id             = "">
                         </a>
-                        <div class="button-show-hide">
-                            <i class="icon-menu-left"></i>
+                        <div class                                     = "button-show-hide">
+                            <i class                                   = "icon-menu-left"></i>
                         </div>
                     </div>
-                    <div class="center">
-                        <div class="center-item">
-                            <div class="center-heading">Main Home</div>
-                            <ul class="menu-list">
-                                <li class="menu-item">
-                                    <a href="{{route('admin.index')}}" class="">
-                                        <div class="icon"><i class="icon-grid"></i></div>
-                                        <div class="text">Dashboard</div>
+                    <div class                                         = "center">
+                        <div class                                     = "center-item">
+                            <div class                                 = "center-heading">Main Home</div>
+                            <ul class                                  = "menu-list">
+                                <li class                              = "menu-item">
+                                    <a href                            = "{{route('admin.index')}}" class          = "">
+                                        <div class                     = "icon"><i class                           = "icon-grid"></i></div>
+                                        <div class                     = "text">Dashboard</div>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="center-item">
-                            <ul class="menu-list">
-                                <li class="menu-item has-children">
-                                    <a href="javascript:void(0);" class="menu-item-button">
-                                        <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                        <div class="text">Products</div>
+                        <div class                                     = "center-item">
+                            <ul class                                  = "menu-list">
+                                <li class                              = "menu-item has-children">
+                                    <a href                            = "javascript                               : void(0);" class            = "menu-item-button">
+                                        <div class                     = "icon"><i class                           = "icon-shopping-cart"></i></div>
+                                        <div class                     = "text">Products</div>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="sub-menu-item">
-                                            <a href="{{route('admin.product.add')}}" class="">
-                                                <div class="text">Add Product</div>
+                                    <ul class                          = "sub-menu">
+                                        <li class                      = "sub-menu-item">
+                                            <a href                    = "{{route('admin.product.add')}}" class    = "">
+                                                <div class             = "text">Add Product</div>
                                             </a>
                                         </li>
-                                        <li class="sub-menu-item">
-                                            <a href="{{route('admin.products')}}" class="">
-                                                <div class="text">Products</div>
+                                        <li class                      = "sub-menu-item">
+                                            <a href                    = "{{route('admin.products')}}" class       = "">
+                                                <div class             = "text">Products</div>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 </li>
-                                <li class="menu-item has-children">
-                                    <a href="javascript:void(0);" class="menu-item-button">
-                                    <div class="icon"><i class="icon-layers"></i></div>
-                                    <div class="text">Brand</div>
+                                <li class                              = "menu-item has-children">
+                                    <a href                            = "javascript                               : void(0);" class            = "menu-item-button">
+                                    <div class                         = "icon"><i class                           = "icon-layers"></i></div>
+                                    <div class                         = "text">Brand</div>
                                     </a>
-                                    <ul class="sub-menu">
-                                            <li class="sub-menu-item">
-                                                    <a href="{{ route('admin.category.add') }}" class="">
-                                                            <div class="text">New Brand</div>
+                                    <ul class                          = "sub-menu">
+                                            <li class                  = "sub-menu-item">
+                                                    <a href            = "{{ route('admin.brand.add') }}" class    = "">
+                                                            <div class = "text">New Brand</div>
                                                     </a>
                                             </li>
-                                            <li class="sub-menu-item">
-                                                    <a href="{{route('admin.brands')}}" class="">
-                                                            <div class="text">Brands</div>
+                                            <li class                  = "sub-menu-item">
+                                                    <a href            = "{{route('admin.brands')}}" class         = "">
+                                                            <div class = "text">Brands</div>
                                                     </a>
                                             </li>
                                     </ul>
                             </li>
 
 
-<li class="menu-item has-children">
-    <a href="javascript:void(0);" class="menu-item-button">
-           <div class="icon"><i class="icon-layers"></i></div>
-           <div class="text">Category</div>
+<li class                                                              = "menu-item has-children">
+    <a href                                                            = "javascript                               : void(0);" class            = "menu-item-button">
+           <div class                                                  = "icon"><i class                           = "icon-layers"></i></div>
+           <div class                                                  = "text">Category</div>
     </a>
-    <ul class="sub-menu">
-           <li class="sub-menu-item">
-                  <a href="#" class="">
-                  <div class="text">New Category</div>
+    <ul class                                                          = "sub-menu">
+           <li class                                                   = "sub-menu-item">
+                  <a href                                              = "{{ route('admin.category.add') }}" class = "">
+                  <div class                                           = "text">New Category</div>
                   </a>
            </li>
-           <li class="sub-menu-item">
-                  <a href="{{route('admin.categories')}}" class="">
-                  <div class="text">Categories</div>
+           <li class                                                   = "sub-menu-item">
+                  <a href                                              = "{{route('admin.categories')}}" class     = "">
+                  <div class                                           = "text">Categories</div>
                   </a>
            </li>
     </ul>
 </li> 
 
                               
-                                <li class="menu-item">
-                                    <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                                <li class                              = "menu-item">
+                                    <form method                       = "POST" action                             = "{{ route('logout') }}" id = "logout-form">
                                         @csrf
-                                        <a href="{{ route('logout') }}" class="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                       <div class="icon"><i class=""></i></div>
-                                        <div class="text">Logout</div>
+                                        <a href                        = "{{ route('logout') }}" class             = "" onclick                 = "event.preventDefault(); document.getElementById('logout-form').submit();">
+                                       <div class                      = "icon"><i class                           = ""></i></div>
+                                        <div class                     = "text">Logout</div>
                                     </a>
                                     </form>
                                 </li>
@@ -129,88 +129,88 @@
                         </div>
                     </div>
                 </div>
-                <div class="section-content-right">
+                <div class                                             = "section-content-right">
 
-                    <div class="header-dashboard">
-                        <div class="wrap">
-                            <div class="header-left">
-                                <a href="index-2.html">
-                                    <img class="" id="logo_header_mobile" alt="" src="images/logo/logo.png"
-                                        data-light="images/logo/logo.png" data-dark="images/logo/logo.png"
-                                        data-width="154px" data-height="52px" data-retina="images/logo/logo.png">
+                    <div class                                         = "header-dashboard">
+                        <div class                                     = "wrap">
+                            <div class                                 = "header-left">
+                                <a href                                = "index-2.html">
+                                    <img class                         = "" id                                     = "logo_header_mobile" alt   = "" src                      = "images/logo/logo.png"
+                                        data-light                     = "images/logo/logo.png" data-dark          = "images/logo/logo.png"
+                                        data-width                     = "154px" data-height                       = "52px" data-retina         = "images/logo/logo.png">
                                 </a>
-                                <div class="button-show-hide">
-                                    <i class="icon-menu-left"></i>
+                                <div class                             = "button-show-hide">
+                                    <i class                           = "icon-menu-left"></i>
                                 </div>
 
 
                                
                             </div>
-                            <div class="header-grid">
+                            <div class                                 = "header-grid">
 
-                                <div class="popup-wrap message type-header">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="header-item">
-                                                <span class="text-tiny">1</span>
-                                                <i class="icon-bell"></i>
+                                <div class                             = "popup-wrap message type-header">
+                                    <div class                         = "dropdown">
+                                        <button class                  = "btn btn-secondary dropdown-toggle" type  = "button"
+                                            id                         = "dropdownMenuButton2" data-bs-toggle      = "dropdown" aria-expanded   = "false">
+                                            <span class                = "header-item">
+                                                <span class            = "text-tiny">1</span>
+                                                <i class               = "icon-bell"></i>
                                             </span>
                                         </button>
-                                        <ul class="dropdown-menu dropdown-menu-end has-content"
-                                            aria-labelledby="dropdownMenuButton2">
+                                        <ul class                      = "dropdown-menu dropdown-menu-end has-content"
+                                            aria-labelledby            = "dropdownMenuButton2">
                                             <li>
                                                 <h6>Notifications</h6>
                                             </li>
                                             <li>
-                                                <div class="message-item item-1">
-                                                    <div class="image">
-                                                        <i class="icon-noti-1"></i>
+                                                <div class             = "message-item item-1">
+                                                    <div class         = "image">
+                                                        <i class       = "icon-noti-1"></i>
                                                     </div>
                                                     <div>
-                                                        <div class="body-title-2">Discount available</div>
-                                                        <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus
+                                                        <div class     = "body-title-2">Discount available</div>
+                                                        <div class     = "text-tiny">Morbi sapien massa, ultricies at rhoncus
                                                             at, ullamcorper nec diam</div>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="message-item item-2">
-                                                    <div class="image">
-                                                        <i class="icon-noti-2"></i>
+                                                <div class             = "message-item item-2">
+                                                    <div class         = "image">
+                                                        <i class       = "icon-noti-2"></i>
                                                     </div>
                                                     <div>
-                                                        <div class="body-title-2">Account has been verified</div>
-                                                        <div class="text-tiny">Mauris libero ex, iaculis vitae rhoncus
+                                                        <div class     = "body-title-2">Account has been verified</div>
+                                                        <div class     = "text-tiny">Mauris libero ex, iaculis vitae rhoncus
                                                             et</div>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="message-item item-3">
-                                                    <div class="image">
-                                                        <i class="icon-noti-3"></i>
+                                                <div class             = "message-item item-3">
+                                                    <div class         = "image">
+                                                        <i class       = "icon-noti-3"></i>
                                                     </div>
                                                     <div>
-                                                        <div class="body-title-2">Order shipped successfully</div>
-                                                        <div class="text-tiny">Integer aliquam eros nec sollicitudin
+                                                        <div class     = "body-title-2">Order shipped successfully</div>
+                                                        <div class     = "text-tiny">Integer aliquam eros nec sollicitudin
                                                             sollicitudin</div>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="message-item item-4">
-                                                    <div class="image">
-                                                        <i class="icon-noti-4"></i>
+                                                <div class             = "message-item item-4">
+                                                    <div class         = "image">
+                                                        <i class       = "icon-noti-4"></i>
                                                     </div>
                                                     <div>
-                                                        <div class="body-title-2">Order pending: <span>ID 305830</span>
+                                                        <div class     = "body-title-2">Order pending              : <span>ID 305830</span>
                                                         </div>
-                                                        <div class="text-tiny">Ultricies at rhoncus at ullamcorper</div>
+                                                        <div class     = "text-tiny">Ultricies at rhoncus at ullamcorper</div>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li><a href="#" class="tf-button w-full">View all</a></li>
+                                            <li><a href                = "#" class                                 = "tf-button w-full">View all</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -218,63 +218,63 @@
 
 
 
-                                <div class="popup-wrap user type-header">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="header-user wg-user">
-                                                <span class="image">
-                                                    <img src="images/avatar/user-1.png" alt="">
+                                <div class                             = "popup-wrap user type-header">
+                                    <div class                         = "dropdown">
+                                        <button class                  = "btn btn-secondary dropdown-toggle" type  = "button"
+                                            id                         = "dropdownMenuButton3" data-bs-toggle      = "dropdown" aria-expanded   = "false">
+                                            <span class                = "header-user wg-user">
+                                                <span class            = "image">
+                                                    <img src           = "images/avatar/user-1.png" alt            = "">
                                                 </span>
-                                                <span class="flex flex-column">
-                                                    <span class="body-title mb-2">MultySense</span>
-                                                    <span class="text-tiny">Admin</span>
+                                                <span class            = "flex flex-column">
+                                                    <span class        = "body-title mb-2">MultySense</span>
+                                                    <span class        = "text-tiny">Admin</span>
                                                 </span>
                                             </span>
                                         </button>
-                                        <ul class="dropdown-menu dropdown-menu-end has-content"
-                                            aria-labelledby="dropdownMenuButton3">
+                                        <ul class                      = "dropdown-menu dropdown-menu-end has-content"
+                                            aria-labelledby            = "dropdownMenuButton3">
                                             <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-user"></i>
+                                                <a href                = "#" class                                 = "user-item">
+                                                    <div class         = "icon">
+                                                        <i class       = "icon-user"></i>
                                                     </div>
-                                                    <div class="body-title-2">Account</div>
+                                                    <div class         = "body-title-2">Account</div>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-mail"></i>
+                                                <a href                = "#" class                                 = "user-item">
+                                                    <div class         = "icon">
+                                                        <i class       = "icon-mail"></i>
                                                     </div>
-                                                    <div class="body-title-2">Inbox</div>
-                                                    <div class="number">27</div>
+                                                    <div class         = "body-title-2">Inbox</div>
+                                                    <div class         = "number">27</div>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-file-text"></i>
+                                                <a href                = "#" class                                 = "user-item">
+                                                    <div class         = "icon">
+                                                        <i class       = "icon-file-text"></i>
                                                     </div>
-                                                    <div class="body-title-2">Taskboard</div>
+                                                    <div class         = "body-title-2">Taskboard</div>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="user-item">
-                                                    <div class="icon">
-                                                        <i class="icon-headphones"></i>
+                                                <a href                = "#" class                                 = "user-item">
+                                                    <div class         = "icon">
+                                                        <i class       = "icon-headphones"></i>
                                                     </div>
-                                                    <div class="body-title-2">Support</div>
+                                                    <div class         = "body-title-2">Support</div>
                                                 </a>
                                             </li>
                                             <li>
-                                                <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                                                <form method           = "POST" action                             = "{{ route('logout') }}" id = "logout-form">
                                                     @csrf
-                                                    <a href="#" class="user-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                        <div class="icon">
-                                                            <i class="icon-log-out"></i> 
+                                                    <a href            = "#" class                                 = "user-item" onclick        = "event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                        <div class     = "icon">
+                                                            <i class   = "icon-log-out"></i> 
                                                         </div>
-                                                        <div class="text">Logout</div>
+                                                        <div class     = "text">Logout</div>
                                                     </a>
                                                 </form>
                                             </li>
@@ -286,14 +286,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="main-content">
+                    <div class                                         = "main-content">
                         @yield('content')
 
                         
 
 
-                        <div class="bottom-page">
-                            <div class="body-text">Copyright © 2019 MultySense</div>
+                        <div class                                     = "bottom-page">
+                            <div class                                 = "body-text">Copyright © 2019 MultySense</div>
                         </div>
                     </div>
 
@@ -302,82 +302,82 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/jquery.min.js')}}"></script>
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('js/bootstrap-select.min.js')}}"></script>
-    <script src="{{ asset('js/sweetalert.min.js')}}"></script>
-    <script src="{{ asset('js/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{ asset('js/main.js')}}"></script>
+    <script src                                                        = "{{ asset('js/jquery.min.js')}}"></script>
+    <script src                                                        = "{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src                                                        = "{{ asset('js/bootstrap-select.min.js')}}"></script>
+    <script src                                                        = "{{ asset('js/sweetalert.min.js')}}"></script>
+    <script src                                                        = "{{ asset('js/apexcharts/apexcharts.js')}}"></script>
+    <script src                                                        = "{{ asset('js/main.js')}}"></script>
     <script>
         (function ($) {
 
-            var tfLineChart = (function () {
+            var tfLineChart                                            = (function () {
 
-                var chartBar = function () {
+                var chartBar                                           = function () {
 
-                    var options = {
-                        series: [{
-                            name: 'Total',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
+                    var options                                        = {
+                        series                                         : [{
+                            name                                       : 'Total',
+                            data                                       : [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
                         }, {
-                            name: 'Pending',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            name                                       : 'Pending',
+                            data                                       : [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
                         },
                         {
-                            name: 'Delivered',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            name                                       : 'Delivered',
+                            data                                       : [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
                         }, {
-                            name: 'Canceled',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            name                                       : 'Canceled',
+                            data                                       : [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
                         }],
-                        chart: {
-                            type: 'bar',
-                            height: 325,
-                            toolbar: {
-                                show: false,
+                        chart                                          : {
+                            type                                       : 'bar',
+                            height                                     : 325,
+                            toolbar                                    : {
+                                show                                   : false,
                             },
                         },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                                columnWidth: '10px',
-                                endingShape: 'rounded'
+                        plotOptions                                    : {
+                            bar                                        : {
+                                horizontal                             : false,
+                                columnWidth                            : '10px',
+                                endingShape                            : 'rounded'
                             },
                         },
-                        dataLabels: {
-                            enabled: false
+                        dataLabels                                     : {
+                            enabled                                    : false
                         },
-                        legend: {
-                            show: false,
+                        legend                                         : {
+                            show                                       : false,
                         },
-                        colors: ['#2377FC', '#FFA500', '#078407', '#FF0000'],
-                        stroke: {
-                            show: false,
+                        colors                                         : ['#2377FC', '#FFA500', '#078407', '#FF0000'],
+                        stroke                                         : {
+                            show                                       : false,
                         },
-                        xaxis: {
-                            labels: {
-                                style: {
-                                    colors: '#212529',
+                        xaxis                                          : {
+                            labels                                     : {
+                                style                                  : {
+                                    colors                             : '#212529',
                                 },
                             },
-                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            categories                                 : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                         },
-                        yaxis: {
-                            show: false,
+                        yaxis                                          : {
+                            show                                       : false,
                         },
-                        fill: {
-                            opacity: 1
+                        fill                                           : {
+                            opacity                                    : 1
                         },
-                        tooltip: {
-                            y: {
-                                formatter: function (val) {
+                        tooltip                                        : {
+                            y                                          : {
+                                formatter                              : function (val) {
                                     return "$ " + val + ""
                                 }
                             }
                         }
                     };
 
-                    chart = new ApexCharts(
+                    chart                                              = new ApexCharts(
                         document.querySelector("#line-chart-8"),
                         options
                     );
@@ -386,14 +386,14 @@
                     }
                 };
 
-                /* Function ============ */
+                /* Function                                            =                                           =                            =                             = === === == */
                 return {
-                    init: function () { },
+                    init                                               : function () { },
 
-                    load: function () {
+                    load                                               : function () {
                         chartBar();
                     },
-                    resize: function () { },
+                    resize                                             : function () { },
                 };
             })();
 
