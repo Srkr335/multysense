@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script> <!-- Include your JS file -->
 </head>
 <body>
 
@@ -13,9 +13,7 @@
     <div class="mb-4 pb-4"></div>
     <section class="login-register container">
         <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab" href="#tab-item-login"
-                   role="tab" aria-controls="tab-item-login" aria-selected="true">Login</a>
+              Login
             </li>
         </ul>
         <div class="tab-content pt-2" id="login_register_tab_content">
@@ -24,7 +22,7 @@
                     <form method="POST" action="{{ route('login') }}" name="login-form" class="needs-validation" novalidate>
                         @csrf
                         <div class="form-floating mb-3">
-                            <input class="form-control form-control_gray @error('email') is-invalid @enderror"
+                            <input class="form-control form-control_gray @error('email') is-invalid @enderror"  
                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             <label for="email">Email address *</label>
                             @error('email')
@@ -51,7 +49,7 @@
 
                         <div class="customer-option mt-4 text-center">
                             <span class="text-secondary">No account yet?</span>
-                            <a href="{{ route('register') }}" class="btn-text js-show-register">Create Account</a>
+                            <a href="{{ route('register') }}" class="btn-text js-show-register">Create Account</a> 
                         </div>
                     </form>
                 </div>

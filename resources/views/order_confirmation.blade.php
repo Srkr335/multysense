@@ -100,7 +100,7 @@
                   <th>TOTAL</th>
                   <td>${{ $order->total }}</td>
                 </tr>
-                @endforeach
+                @endforeach  
               </tbody>
             </table>
           </div>
